@@ -5,27 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Haritada Alanını İşaretle</title>
     
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
     
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>Haritada Alanını İşaretle</h1>
-    <p>Başlangıç konumunuzdan bir tur atıp geri döndüğünüzde "Bitir" butonuna basarak alanınızı oluşturun.</p>
+    <div class="container">
+        <div class="header">
+            <h1>Bölge Fethi</h1>
+            <p>Rotanı çiz, başlangıç noktana dön ve alanını fethet!</p>
+        </div>
 
-    <div id="map"></div>
+        <div id="statsPanel" class="hidden">
+            <div id="distance">Mesafe: 0 m</div>
+            <div id="timer">Süre: 00:00</div>
+        </div>
 
-    <div class="controls">
-        <button id="startButton">Takibi Başlat</button>
-        <button id="finishButton" disabled>Turu Bitir</button>
+        <div id="map"></div>
+
+        <div class="controls">
+            <button id="startButton"><i class="fa-solid fa-play"></i> Başlat</button>
+            <button id="finishButton" disabled><i class="fa-solid fa-flag-checkered"></i> Bitir</button>
+        </div>
     </div>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
+    <div id="resultsModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2>🎉 Fetih Tamamlandı! 🎉</h2>
+            <p><strong>Toplam Alan:</strong> <span id="resultArea"></span> m²</p>
+            <p><strong>Toplam Mesafe:</strong> <span id="resultDistance"></span> m</p>
+            <p><strong>Toplam Süre:</strong> <span id="resultTime"></span></p>
+            <button id="closeModal">Kapat</button>
+        </div>
+    </div>
+
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-geometryutil"></script>
     
     <script src="script.js"></script>
 </body>
