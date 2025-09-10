@@ -1,46 +1,148 @@
-body {
-    font-family: sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    padding: 10px;
-    box-sizing: border-box;
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --success-color: #27ae60;
+    --danger-color: #e74c3c;
+    --light-color: #ecf0f1;
+    --dark-color: #212529;
 }
 
-h1, p {
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 95%;
+    max-width: 900px;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     text-align: center;
 }
 
-/* Harita alanının boyutunu ve kenarlığını belirliyoruz */
+.header h1 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.header p {
+    color: #7f8c8d;
+    margin-top: 0;
+}
+
 #map {
-    height: 60vh; /* Ekran yüksekliğinin %60'ı kadar */
-    width: 95%; /* Ekran genişliğinin %95'i kadar */
-    max-width: 1000px;
-    border: 2px solid #333;
+    height: 55vh;
+    border-radius: 10px;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+}
+
+#statsPanel {
+    display: flex;
+    justify-content: space-around;
+    background: #f9f9f9;
+    padding: 10px;
     border-radius: 8px;
-    margin-bottom: 15px;
+    border: 1px solid #eee;
 }
 
 .controls button {
-    padding: 10px 20px;
+    padding: 12px 25px;
     font-size: 16px;
     cursor: pointer;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     color: white;
+    transition: all 0.3s ease;
+    margin: 0 10px;
+    font-weight: 600;
+}
+
+.controls button i {
+    margin-right: 8px;
 }
 
 #startButton {
-    background-color: #28a745; /* Yeşil */
+    background-color: var(--success-color);
+}
+#startButton:hover {
+    background-color: #2ecc71;
 }
 
 #finishButton {
-    background-color: #dc3545; /* Kırmızı */
+    background-color: var(--danger-color);
+}
+#finishButton:hover {
+    background-color: #ff6b81;
+}
+#finishButton:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
 }
 
-/* disabled durumundaki butonun stilini ayarlıyoruz */
-#finishButton:disabled {
-    background-color: #6c757d; /* Gri */
-    cursor: not-allowed;
+.hidden {
+    display: none !important;
+}
+
+/* Modal Stilleri */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 400px;
+}
+.modal-content h2 {
+    color: var(--primary-color);
+}
+.modal-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+#closeModal {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+/* Animasyonlu Başlangıç İşaretçisi */
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+.pulsing-icon {
+    background-color: var(--secondary-color);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    animation: pulse 2s infinite;
 }
